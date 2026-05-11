@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKUify — карточки товаров для Uzum и Яндекс Маркета</title>
+  <meta name="description" content="Telegram-бот для автоматической генерации карусельных карточек товаров с помощью ИИ. Для Uzum Market и Яндекс Маркета.">
+  <meta property="og:title" content="SKUify — карточки товаров за 2 минуты">
+  <meta property="og:description" content="Отправьте фото товара в бота — ИИ создаст готовую карусель из 3–5 карточек для маркетплейса.">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://skuify.uz/">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container header__inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="SKUify">
+        <img src="images/logo.png" alt="" class="logo__icon">
+        <span class="logo__text">SKU<span class="logo__text--grad">ify</span></span>
+      </a>
+
+      <!-- Nav links -->
+      <nav class="header__nav">
+        <a href="#steps" class="nav-link" data-i18n="nav_how">Как работает</a>
+        <a href="#gallery" class="nav-link" data-i18n="nav_examples">Примеры</a>
+        <a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+        <a href="https://t.me/SKUify_bot" class="btn btn--outline" target="_blank" rel="noopener noreferrer" data-i18n="nav_cta">Попробовать</a>
+      </nav>
+
+      <!-- Lang + mobile menu -->
+      <div class="header__right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="uz">UZ</button>
+        </div>
+        <button class="burger" id="burger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#steps" class="mobile-nav__link" data-i18n="nav_how">Как работает</a>
+      <a href="#gallery" class="mobile-nav__link" data-i18n="nav_examples">Примеры</a>
+      <a href="#faq" class="mobile-nav__link" data-i18n="nav_faq">FAQ</a>
+      <a href="https://t.me/SKUify_bot" class="mobile-nav__link mobile-nav__cta" target="_blank" rel="noopener noreferrer" data-i18n="nav_cta">Попробовать</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__glow hero__glow--blue"></div>
+    <div class="hero__glow hero__glow--purple"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        <img src="images/uzummarket.png" alt="Uzum Market" class="badge-logo">
+        <img src="images/yandex-market-sign-logo.svg" alt="Яндекс Маркет" class="badge-logo badge-logo--ym">
+        <span data-i18n="hero_badge">Uzum Market · Яндекс Маркет</span>
+      </div>
+
+      <h1 data-i18n="hero_title">Карточки товаров,<br>которые <em>продают</em></h1>
+
+      <p class="hero__sub" data-i18n="hero_sub">
+        Отправьте фото товара — бот сам сделает красивые карточки для маркетплейса
+      </p>
+
+      <a href="https://t.me/SKUify_bot" class="btn btn--primary btn--hero" target="_blank" rel="noopener noreferrer">
+        <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+        <span data-i18n="cta_try">Попробовать бесплатно</span>
+      </a>
+
+      <div class="hero__cards">
+        <div class="hero__card hero__card--back">
+          <img src="images/leggings.jpg" alt="Пример карточки товара — леггинсы" width="200" height="267" loading="lazy">
+        </div>
+        <div class="hero__card hero__card--mid">
+          <img src="images/lamzu.jpg" alt="Пример карточки товара — мышь Lamzu" width="210" height="280" loading="lazy">
+        </div>
+        <div class="hero__card hero__card--front">
+          <img src="images/makita.jpg" alt="Пример карточки товара — дрель Makita" width="225" height="300" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="steps" id="steps">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="steps_title">Как это работает</h2>
+
+      <div class="steps__list">
+
+        <!-- Step 1 -->
+        <div class="step-row">
+          <div class="step-row__visual reveal" data-delay="1">
+            <div class="step-phone">
+              <img src="images/How1.PNG" alt="Шаг 1 — отправьте фото товара боту в Telegram" width="240" height="480" loading="lazy">
+            </div>
+          </div>
+          <div class="step-row__text reveal">
+            <div class="step-icon" aria-label="Шаг 1 — отправьте фото" role="img">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="4" stroke="white" stroke-width="1.8" fill="none"/>
+                <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
+                <path d="M3 15l4.5-4.5 3 3 3-3.5 4.5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="step-row__num">01</div>
+            <h3 data-i18n="step1_title">Отправьте фото товара</h3>
+            <p data-i18n="step1_desc">Просто отправьте фото товара боту — как другу в Telegram. Никакого сложного редактора, никаких настроек.</p>
+          </div>
+        </div>
+
+        <div class="step-row__connector">
+          <svg width="2" height="48" viewBox="0 0 2 48"><line x1="1" y1="0" x2="1" y2="48" stroke="#21262d" stroke-width="2" stroke-dasharray="4 4"/></svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-row step-row--reverse">
+          <div class="step-row__visual reveal" data-delay="1">
+            <div class="step-phone">
+              <img src="images/How2.PNG" alt="Шаг 2 — ИИ анализирует товар и предлагает описание" width="240" height="480" loading="lazy">
+            </div>
+          </div>
+          <div class="step-row__text reveal">
+            <div class="step-icon" aria-label="Шаг 2 — ИИ обрабатывает фото" role="img">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M15 3.5C15 3.5 17 6 17 8" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke="white" stroke-width="1.8"/>
+                <path d="M12 9V7M12 15v2M9 12H7M15 12h2" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="step-row__num">02</div>
+            <h3 data-i18n="step2_title">ИИ берёт работу на себя</h3>
+            <p data-i18n="step2_desc">За 2 минуты бот определяет товар, придумывает продающие тексты, подбирает компоновку и собирает карточки.</p>
+          </div>
+        </div>
+
+        <div class="step-row__connector">
+          <svg width="2" height="48" viewBox="0 0 2 48"><line x1="1" y1="0" x2="1" y2="48" stroke="#21262d" stroke-width="2" stroke-dasharray="4 4"/></svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-row">
+          <div class="step-row__visual reveal" data-delay="1">
+            <div class="step-phone">
+              <img src="images/How3.PNG" alt="Шаг 3 — готовые карточки товара в чате" width="240" height="480" loading="lazy">
+            </div>
+          </div>
+          <div class="step-row__text reveal">
+            <div class="step-icon" aria-label="Шаг 3 — получите готовые карточки" role="img">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 3v12M8 11l4 4 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="step-row__num">03</div>
+            <h3 data-i18n="step3_title">Забирайте и публикуйте</h3>
+            <p data-i18n="step3_desc">Получите 3–5 готовых карточек прямо в чат. Скачивайте и загружайте на маркетплейс — всё уже в нужном формате.</p>
+          </div>
+        </div>
+
+      </div><!-- /steps__list -->
+    </div>
+  </section>
+
+  <!-- ===== RESULTS GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="gallery_title">Что вы получаете</h2>
+      <div class="gallery__grid">
+        <img src="images/makita.jpg" alt="Карточка товара Makita для Uzum Market" width="340" height="453" loading="lazy" class="reveal">
+        <img src="images/lamzu.jpg" alt="Карточка товара Lamzu Maya X для Яндекс Маркета" width="340" height="453" loading="lazy" class="reveal" data-delay="1">
+        <img src="images/leggings.jpg" alt="Карточка товара леггинсы для маркетплейса" width="340" height="453" loading="lazy" class="reveal" data-delay="2">
+      </div>
+      <div class="gallery__cta">
+        <a href="https://t.me/SKUify_bot" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+          <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+          <span data-i18n="cta_free">Попробовать бесплатно</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title reveal" data-i18n="faq_title">Частые вопросы</h2>
+      <div class="faq__list">
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span data-i18n="faq1_q">Что значит «2 генерации бесплатно»?</span>
+            <svg class="faq__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq__a" hidden>
+            <p data-i18n="faq1_a">После первого запуска бота вам автоматически начисляются 2 бесплатные генерации. Регистрация и оплата не нужны — просто отправьте фото товара и получите готовые карточки.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span data-i18n="faq2_q">Для каких маркетплейсов подходят карточки?</span>
+            <svg class="faq__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq__a" hidden>
+            <p data-i18n="faq2_a">Карточки создаются в формате 3:4, который подходит для Uzum Market и Яндекс Маркета. Карусель из 3–5 изображений — стандартный формат для этих платформ.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span data-i18n="faq3_q">Как оплатить генерации?</span>
+            <svg class="faq__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq__a" hidden>
+            <p data-i18n="faq3_a">Оплата через Click и Payme — карты Uzcard и Humo. Всё прямо в боте, без перехода на сторонние сайты.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span data-i18n="faq4_q">Мои фото куда-то сохраняются?</span>
+            <svg class="faq__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq__a" hidden>
+            <p data-i18n="faq4_a">Нет. Загруженные фото удаляются сразу после генерации карточек — обычно в течение нескольких минут. Мы не храним ваши изображения постоянно.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            <span data-i18n="faq5_q">Сколько времени занимает генерация?</span>
+            <svg class="faq__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq__a" hidden>
+            <p data-i18n="faq5_a">Обычно 1–3 минуты. Бот сообщит, когда карточки готовы — можно сразу скачивать и загружать на маркетплейс.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="cta-block">
+    <div class="cta-block__glow"></div>
+    <div class="container cta-block__inner">
+      <div class="cta-block__free-badge reveal" data-i18n="cta_free_badge">🎁 Первые 2 генерации — бесплатно</div>
+      <h2 class="section-title reveal" data-delay="1" data-i18n="cta_title">Готовы попробовать?<br>Это бесплатно</h2>
+      <p class="cta-block__sub" data-i18n="cta_sub">Без регистрации. Результат — за 2 минуты.</p>
+      <a href="https://t.me/SKUify_bot" class="btn btn--primary btn--large" target="_blank" rel="noopener noreferrer">
+        <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+        <span data-i18n="cta_open">Открыть бота в Telegram</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#" class="logo footer__logo" aria-label="SKUify">
+        <img src="images/logo.png" alt="" class="logo__icon logo__icon--sm">
+        <span class="logo__text logo__text--sm">SKU<span class="logo__text--grad">ify</span></span>
+      </a>
+      <p class="footer__copy">&copy; <span id="year"></span> SKUify</p>
+      <div class="footer__links">
+        <a href="https://t.me/SKUify_bot" target="_blank" rel="noopener noreferrer" data-i18n="footer_link">Telegram-бот</a>
+        <a href="offer.html" data-i18n="footer_offer">Оферта</a>
+        <a href="privacy.html" data-i18n="footer_privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
