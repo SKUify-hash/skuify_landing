@@ -181,10 +181,15 @@
   <section class="gallery" id="gallery">
     <div class="container">
       <h2 class="section-title reveal" data-i18n="gallery_title">Что вы получаете</h2>
-      <div class="gallery__grid">
+      <div class="gallery__grid" id="galleryGrid">
         <img src="images/makita.jpg" alt="Карточка товара Makita для Uzum Market" width="340" height="453" loading="lazy">
         <img src="images/lamzu.jpg" alt="Карточка товара Lamzu Maya X для Яндекс Маркета" width="340" height="453" loading="lazy">
         <img src="images/leggings.jpg" alt="Карточка товара леггинсы для маркетплейса" width="340" height="453" loading="lazy">
+      </div>
+      <div class="gallery__dots" id="galleryDots" aria-hidden="true">
+        <span class="gallery__dot gallery__dot--active"></span>
+        <span class="gallery__dot"></span>
+        <span class="gallery__dot"></span>
       </div>
       <div class="gallery__cta">
         <a href="https://t.me/SKUify_bot" class="btn btn--primary" target="_blank" rel="noopener noreferrer">

@@ -663,6 +663,25 @@ h1 em {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
 }
 
+.gallery__dots {
+  display: none;
+}
+
+.gallery__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-bright);
+  transition: background 0.2s, width 0.2s;
+  flex-shrink: 0;
+}
+
+.gallery__dot--active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
 .gallery__cta {
   display: flex;
   justify-content: center;
@@ -819,28 +838,57 @@ h1 em {
   .gallery__grid::-webkit-scrollbar { display: none; }
 
   .gallery__grid img {
-    min-width: calc(100vw - 80px);
-    max-width: calc(100vw - 80px);
-    scroll-snap-align: center;
     height: auto;
     aspect-ratio: 3/4;
     object-fit: cover;
   }
 
-  /* Hero cards: auto fan-out on mobile (no hover) */
+  .gallery__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  /* Hero cards: animate fan-out on load (mobile) */
   .hero__cards .hero__card--back {
-    transform: rotate(-18deg) translateX(-60px) translateY(10px);
-    opacity: 1;
+    animation: fan-back 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
   }
 
   .hero__cards .hero__card--mid {
-    transform: rotate(0deg) translateY(-16px);
-    opacity: 1;
+    animation: fan-mid 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both;
   }
 
   .hero__cards .hero__card--front {
-    transform: rotate(14deg) translateX(60px) translateY(10px);
-    opacity: 1;
+    animation: fan-front 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+  }
+
+  @keyframes fan-back {
+    from { transform: rotate(-8deg); opacity: 0.7; }
+    to   { transform: rotate(-18deg) translateX(-60px) translateY(10px); opacity: 1; }
+  }
+
+  @keyframes fan-mid {
+    from { transform: rotate(-2deg); opacity: 0.85; }
+    to   { transform: rotate(0deg) translateY(-16px); opacity: 1; }
+  }
+
+  @keyframes fan-front {
+    from { transform: rotate(5deg); opacity: 1; }
+    to   { transform: rotate(14deg) translateX(60px) translateY(10px); opacity: 1; }
+  }
+
+  /* Gallery: peek next card + dots */
+  .gallery__grid {
+    padding: 0 24px 12px;
+    gap: 12px;
+  }
+
+  .gallery__grid img {
+    min-width: calc(100vw - 72px);
+    max-width: calc(100vw - 72px);
+    scroll-snap-align: center;
   }
 
   .cta-block { padding: 72px 0; }

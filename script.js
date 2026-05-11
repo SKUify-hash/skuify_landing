@@ -163,3 +163,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// Gallery dots — update active dot on scroll
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryDots = document.querySelectorAll('.gallery__dot');
+
+if (galleryGrid && galleryDots.length) {
+  galleryGrid.addEventListener('scroll', () => {
+    const index = Math.round(galleryGrid.scrollLeft / galleryGrid.offsetWidth);
+    galleryDots.forEach((dot, i) => {
+      dot.classList.toggle('gallery__dot--active', i === index);
+    });
+  }, { passive: true });
+}
+
