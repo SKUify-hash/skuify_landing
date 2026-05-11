@@ -20,6 +20,17 @@ const translations = {
     cta_title: 'Готовы попробовать?<br>Это бесплатно',
     cta_sub: 'Без регистрации. Результат — за 2 минуты.',
     cta_open: 'Открыть бота в Telegram',
+    faq_title: 'Частые вопросы',
+    faq1_q: 'Что значит «2 генерации бесплатно»?',
+    faq1_a: 'После первого запуска бота вам автоматически начисляются 2 бесплатные генерации. Регистрация и оплата не нужны — просто отправьте фото товара и получите готовые карточки.',
+    faq2_q: 'Для каких маркетплейсов подходят карточки?',
+    faq2_a: 'Карточки создаются в формате 3:4, который подходит для Uzum Market и Яндекс Маркета. Карусель из 3–5 изображений — стандартный формат для этих платформ.',
+    faq3_q: 'Как оплатить генерации?',
+    faq3_a: 'Оплата через Click и Payme — карты Uzcard и Humo. Всё прямо в боте, без перехода на сторонние сайты.',
+    faq4_q: 'Мои фото куда-то сохраняются?',
+    faq4_a: 'Нет. Загруженные фото удаляются сразу после генерации карточек — обычно в течение нескольких минут. Мы не храним ваши изображения постоянно.',
+    faq5_q: 'Сколько времени занимает генерация?',
+    faq5_a: 'Обычно 1–3 минуты. Бот сообщит, когда карточки готовы — можно сразу скачивать и загружать на маркетплейс.',
     footer_link: 'Telegram-бот',
     footer_offer: 'Оферта',
     footer_privacy: 'Политика конфиденциальности',
@@ -45,6 +56,17 @@ const translations = {
     cta_title: 'Sinab ko\'rishga tayyormisiz?<br>Bu bepul',
     cta_sub: 'Ro\'yxatdan o\'tmasdan. Natija — 2 daqiqada.',
     cta_open: 'Telegramda botni ochish',
+    faq_title: 'Ko\'p so\'raladigan savollar',
+    faq1_q: '«2 ta bepul generatsiya» degani nima?',
+    faq1_a: 'Botni birinchi ishga tushirganingizda 2 ta bepul generatsiya avtomatik beriladi. Ro\'yxatdan o\'tish yoki to\'lov kerak emas — tovar rasmini yuboring va tayyor kartochkalarni oling.',
+    faq2_q: 'Kartochkalar qaysi marketplacelar uchun mos keladi?',
+    faq2_a: 'Kartochkalar 3:4 formatida yaratiladi — Uzum Market va Yandex Market uchun standart format. 3–5 rasmdan iborat karusel.',
+    faq3_q: 'Generatsiyalar uchun qanday to\'lash mumkin?',
+    faq3_a: 'To\'lov Click va Payme orqali — Uzcard va Humo kartalari. Barchasi botda, boshqa saytlarga o\'tmasdan.',
+    faq4_q: 'Mening rasmlarim saqlanib qoladimi?',
+    faq4_a: 'Yo\'q. Yuklangan rasmlar kartochkalar yaratilgandan so\'ng darhol o\'chiriladi — odatda bir necha daqiqa ichida. Biz sizning rasmlaringizni doimiy saqlamaymiz.',
+    faq5_q: 'Generatsiya qancha vaqt oladi?',
+    faq5_a: 'Odatda 1–3 daqiqa. Bot tayyor bo\'lganda xabar beradi — darhol yuklab, marketplacega joylashtirishingiz mumkin.',
     footer_link: 'Telegram-bot',
     footer_offer: 'Oferta',
     footer_privacy: 'Maxfiylik siyosati',
@@ -91,6 +113,27 @@ if (burger && mobileNav) {
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// FAQ accordion
+document.querySelectorAll('.faq__q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq__item');
+    const answer = item.querySelector('.faq__a');
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    // Close all
+    document.querySelectorAll('.faq__item').forEach(i => {
+      i.querySelector('.faq__q').setAttribute('aria-expanded', 'false');
+      i.querySelector('.faq__a').hidden = true;
+    });
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      answer.hidden = false;
+    }
+  });
+});
 
 // Step icons — fade in on scroll
 const stepIcons = document.querySelectorAll('.step-icon');
