@@ -409,6 +409,7 @@ h1 em {
   width: 320px;
   height: 380px;
   margin-top: 16px;
+  cursor: pointer;
 }
 
 .hero__card {
@@ -417,7 +418,7 @@ h1 em {
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
   border: 1px solid var(--border-bright);
-  transition: transform 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s ease, box-shadow 0.45s ease;
 }
 
 .hero__card img {
@@ -456,7 +457,24 @@ h1 em {
   z-index: 3;
 }
 
-/* card hover handled by JS 3D tilt */
+/* Hover: fan out */
+.hero__cards:hover .hero__card--back {
+  transform: rotate(-18deg) translateX(-60px) translateY(10px);
+  opacity: 1;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8);
+}
+
+.hero__cards:hover .hero__card--mid {
+  transform: rotate(0deg) translateY(-16px);
+  opacity: 1;
+  box-shadow: 0 32px 80px rgba(74, 158, 255, 0.2);
+}
+
+.hero__cards:hover .hero__card--front {
+  transform: rotate(14deg) translateX(60px) translateY(10px);
+  opacity: 1;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8);
+}
 
 /* ── Steps ── */
 .steps {

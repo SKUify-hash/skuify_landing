@@ -163,30 +163,3 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Hero cards — parallax on mouse move
-const heroCards = document.querySelector('.hero__cards');
-if (heroCards && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const cards = heroCards.querySelectorAll('.hero__card');
-  const bases = ['rotate(-8deg)', 'rotate(-2deg)', 'rotate(5deg)'];
-  const depths = [3, 6, 10];
-
-  heroCards.addEventListener('mousemove', (e) => {
-    const rect = heroCards.getBoundingClientRect();
-    const dx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    const dy = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-
-    cards.forEach((card, i) => {
-      const tx = dx * depths[i];
-      const ty = dy * depths[i];
-      card.style.transition = 'transform 0.1s linear';
-      card.style.transform = `${bases[i]} translate(${tx}px, ${ty}px)`;
-    });
-  });
-
-  heroCards.addEventListener('mouseleave', () => {
-    cards.forEach((card, i) => {
-      card.style.transition = 'transform 0.5s ease';
-      card.style.transform = bases[i];
-    });
-  });
-}
