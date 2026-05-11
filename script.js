@@ -163,42 +163,30 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Hero cards 3D tilt on mouse move
+// Hero cards — parallax on mouse move
 const heroCards = document.querySelector('.hero__cards');
 if (heroCards && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const cards = heroCards.querySelectorAll('.hero__card');
+  const bases = ['rotate(-8deg)', 'rotate(-2deg)', 'rotate(5deg)'];
+  const depths = [3, 6, 10];
 
   heroCards.addEventListener('mousemove', (e) => {
     const rect = heroCards.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
+    const dx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const dy = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
 
-    const tiltX = dy * -8;
-    const tiltY = dx * 8;
-
-    heroCards.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-
-    // Subtle parallax per card (front moves more than back)
-    const depths = [2, 4, 7];
-    const bases = ['rotate(-8deg)', 'rotate(-2deg)', 'rotate(5deg)'];
     cards.forEach((card, i) => {
-      const px = dx * depths[i];
-      const py = dy * depths[i];
-      card.style.transform = `${bases[i]} translate(${px}px, ${py}px)`;
+      const tx = dx * depths[i];
+      const ty = dy * depths[i];
+      card.style.transition = 'transform 0.1s linear';
+      card.style.transform = `${bases[i]} translate(${tx}px, ${ty}px)`;
     });
   });
 
   heroCards.addEventListener('mouseleave', () => {
-    heroCards.style.transform = '';
-    const bases = ['rotate(-8deg)', 'rotate(-2deg)', 'rotate(5deg)'];
     cards.forEach((card, i) => {
+      card.style.transition = 'transform 0.5s ease';
       card.style.transform = bases[i];
-      card.style.transition = 'transform 0.6s ease';
     });
-    setTimeout(() => {
-      cards.forEach(card => { card.style.transition = ''; });
-    }, 600);
   });
 }
