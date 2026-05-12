@@ -651,8 +651,7 @@ h1 em {
 
 .gallery__grid img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  height: auto;
   border-radius: var(--radius);
   display: block;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
